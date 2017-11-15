@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<link rel="stylesheet" type="text/css" href="css/base.css" />
+	<link rel="stylesheet" type="text/css" href="css/join.css" />
+	<link rel="stylesheet" type="text/css" href="css/public.css"/>
+	<script src="js/jquery-3.2.1.min.js"></script>
+	<script type="text/javascript">
+		window.onload = function() {
+			var nav = document.getElementsByTagName("nav")[0]
+			var navLi = nav.getElementsByTagName("li")
+			var box = document.getElementsByClassName("sNav")
+			var topSearch = document.getElementsByClassName("topSearch")[0]
+			var topSearchA = document.getElementsByClassName("topSearchA")[0]
+			for(var i = 0; i < navLi.length; i++) {
+				navLi[i].index = i;
+				navLi[i].onmouseenter = function() {
+					for(var i = 0; i < navLi.length; i++) {
+						navLi[i].className = ""
+						box[i].style.display = "none"
+					}
+					box[this.index].style.display = "block";
+				}
+				navLi[i].onmouseout = function(){
+					for(var i = 0; i < navLi.length; i++) {
+						box[i].style.display = "none"
+					}					
+				}
+			}
+			
+			    var timer = null;
+				topSearch.onmouseover = function(){
+					topSearchA.style.display = "block";
+				}
+				topSearchA.onmouseover = function(){
+					clearTimeout(timer)
+					topSearchA.style.display = "block";
+				}
+				topSearchA.onmouseout = function(){
+					topSearchA.style.display = "none";
+				}
+				topSearch.onmouseout = function(){
+					timer = setTimeout(function(){
+						topSearchA.style.display="none";
+					},500)
+				}	
+
+
+              $(document).ready(function () {
+                  $("#keyss").keydown(function (e) {
+                      if (e.keyCode == 13) {
+                          if (document.getElementById("keyss").value == "" || document.getElementById("keyss").value == "搜索关键字" || document.getElementById("keyss").value == null)
+                          { return false; }
+                          location.href = "/search.aspx?k=" + document.getElementById("keyss").value;
+                      }
+                  })
+              })
+
+              function checksearchs() {
+
+                  if (document.getElementById("keyss").value == "" || document.getElementById("keyss").value == "搜索关键字") {
+                      alert("请输入搜索的关键字");
+                      document.getElementById("keyss").focus();
+                      return;
+                  }
+                  location.href = "/search.aspx?k=" + document.getElementById("keyss").value;
+
+              }
+
+              function EnterPress1(e) { //传入 event 
+                  var e = e || window.event;
+                  if (e.keyCode == 13) {
+                      location.href = "/search.aspx?k=" + document.getElementById("keyss").value;
+                  }
+              }
+				
+			
+		}
+	</script>
+	<body>
+		<div class="headDiv">
+			<div class="wal">
+				<a href=""><img src="img/logo.jpg" /></a>
+				<nav>
+					<ul>
+						<li>
+							<a href="index.html">首页</a>
+						</li>
+						<li>
+							<a href="news.html">关于金奥</a>
+						</li>
+						<li>
+							<a href="protce.html">新闻资讯</a>
+						</li>
+						<li>
+							<a href="knowledge.html">健康知识</a>
+						</li>
+						<li>
+							<a href="product.html">产品介绍</a>
+						</li>
+						<li>
+							<a href="join.html">招商加盟</a>
+						</li>
+						<li>
+							<a href="contact.html">联系我们</a>
+						</li>
+					</ul>
+				</nav>
+				<div class="topSearch">
+					<img src="img/searchA.png" />
+				</div>
+				<div class="topRight">
+					<a href="">登录</a>
+					<a href="">注册</a>
+				</div>
+			</div>
+		</div>
+		
+		<div class="sNav">
+			<div class="wal">
+				<div class="list">
+					<ul>
+						<li><a href="">公司介绍</a></li>
+						<li><a href="">产地介绍</a></li>
+						<li><a href="">品牌文化</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="sNav">
+			<div class="wal">
+				<div class="list" style="left: 261px;">
+					<ul>
+						<li><a href="">公司介绍</a></li>
+						<li><a href="">产地介绍</a></li>
+						<li><a href="">品牌文化</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="sNav">
+			<div class="wal">
+				<div class="list" style="left: 371px;">
+					<ul>
+						<li><a href="">公司介绍</a></li>
+						<li><a href="">产地介绍</a></li>
+						<li><a href="">品牌文化</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="sNav">
+			<div class="wal">
+				<div class="list" style="left: 400px;">
+					<ul>
+						<li><a href="">公司介绍</a></li>
+						<li><a href="">产地介绍</a></li>
+						<li><a href="">品牌文化</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="sNav">
+			<div class="wal">
+				<div class="list" style="left: 500px;">
+					<ul>
+						<li><a href="">公司介绍</a></li>
+						<li><a href="">产地介绍</a></li>
+						<li><a href="">品牌文化</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="sNav">
+			<div class="wal">
+				<div class="list" style="left: 587px;">
+					<ul>
+						<li><a href="">公司介绍</a></li>
+						<li><a href="">产地介绍</a></li>
+						<li><a href="">品牌文化</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>	
+		<div class="sNav">
+			<div class="wal">
+				<div class="list" style="left: 696px;">
+					<ul>
+						<li><a href="">公司介绍</a></li>
+						<li><a href="">产地介绍</a></li>
+						<li><a href="">品牌文化</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>		
+		<div class="topSearchA">
+			<div class="box">
+				<div class="form">
+					<input type="text" class="input1" placeholder="搜索关键字" id="keyss" name="keyss" onfocus="if (value ==''){value =''}" onblur="if (value =='搜索关键字'){value='搜索关键字'}" onkeypress="EnterPress1(event)" onkeydown="EnterPress1(event)">
+					<input type="button" class="btn1" id="txtheadkey" onclick="javascript: checksearchs();">
+				</div>
+			</div>
+		</div>
+		<div class="banner">
+		</div>
+		<div class="pageTop">
+			<div class="wal2">
+				<div class="pageNow">
+					您的位置：
+					<a href="index.html">首页 ></a>
+					<a href="">新闻资讯 ></a>
+					<em>公司新闻</em>
+				</div>
+			</div>
+		</div>
+		<div class="pageBox">
+			<div class="wal2">
+				<div class="pageTitle">
+					<p>招商信息</p>
+					<em>MERCHANTS</em>
+				</div>
+				<div class="main">
+					<ul>
+						<li>
+							<div id="one" class="oneA">
+							  <div>
+							  	<p>加盟条件</p>
+							  	<p>JOIN CONDITIONS</p>
+							  </div>
+							  <p>具有合法经营资格的公司或个人创业者；</p>
+							  <p>具有一定的资金实力和独立的市场开发能力，拥有健全的市场网络和市场运作经验；</p>
+							</div>
+							<div id="two">
+								<img src="img/join1.jpg"/>
+							</div>
+						</li>
+						<li>
+							<div id="two">
+								<img src="img/join2.jpg"/>
+							</div>
+							<div id="one" class="oneB">
+							  <div>
+							  	<p>加盟品质</p>
+							  	<p>JOINING QUALITY</p>
+							  </div>
+							  <p>具有良好的商业信誉和职业道德，维护公司统一的产品形象和企业形象，尊重其他经销区域利益；</p>
+							  <p>具有长远的市场规划和强烈的事业心；</p>
+							</div>							
+						</li>
+						<li>
+							<div id="one" class="oneC">
+							  <div>
+							  	<p>财富市场</p>
+							  	<p>WEALTH MARKET</p>
+							  </div>
+							  <p>有固定业务拓展团队者优先；</p>
+							  <p>熟悉当地市场，具有较强的市场推广能力和良好渠道资源；</p>
+							</div>
+							<div id="two">
+								<img src="img/join3.jpg"/>
+							</div>							
+						</li>
+					</ul>
+				</div>
+				<!--<a href="#" class="ding">返回</a>-->				
+			</div>
+		</div>
+		<div class="footDiv footDiv2">
+			<div class="wal">
+				<div class="footNav fl">
+					<ul>
+						<li>
+							<h2>关于金奥</h2>
+							<dl>
+								<dd>公司介绍</dd>
+								<dd>产地介绍</dd>
+								<dd>品牌文化</dd>
+							</dl>
+						</li>
+						<li>
+							<h2>新闻资讯</h2>
+							<dl>
+								<dd>公司新闻</dd>
+								<dd>媒体热点</dd>
+								<dd>新闻资讯</dd>
+							</dl>
+						</li>
+						<li>
+							<h2>健康知识</h2>
+							<dl>
+								<dd>健康知识</dd>
+							</dl>
+						</li>
+						<li>
+							<h2>产品介绍</h2>
+							<dl>
+								<dd>山泉水</dd>
+								<dd>蕉岭大米</dd>
+								<dd>蕉岭特产</dd>
+							</dl>
+						</li>
+						<li>
+							<h2>招商加盟</h2>
+							<dl>
+								<dd>招商信息</dd>
+								<dd>招商申请</dd>
+							</dl>
+						</li>
+						<li>
+							<h2>联系我们</h2>
+							<dl>
+								<dd>专卖店</dd>
+								<dd>联系方式</dd>
+								<dd>在线咨询</dd>
+								<dd>人力招聘</dd>
+							</dl>
+						</li>
+					</ul>
+					<span class="clear_f"></span>
+				</div>
+				<div class="footDiv_r fr">
+					<ul>
+						<li>
+							<a href="">
+								<div class="ico">
+									<img src="img/nimg80_1.png" />
+								</div>
+								<p>会员中心</p>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="ico">
+									<img src="img/nimg80_2.png" />
+								</div>
+								<p>购物车</p>
+							</a>
+						</li>
+						<li>
+							<a href="">
+								<div class="ico">
+									<img src="img/nimg80_3.png" />
+								</div>
+								<p>我的订单</p>
+							</a>
+						</li>
+					</ul>
+					<span class="clear_f"></span>
+				</div>
+				<div class="h10">
+
+				</div>
+				<div class="links">
+					友情链接：
+					<a href="">百度搜索</a>
+					<a href="">万齐网络</a>
+					<a href="">搜狗搜索</a>
+				</div>
+			</div>
+		</div>
+		<div class="foot foot2">
+			<div class="wal">
+				<div class="msg fl">
+					Copyright © jinao.com All Rights Reserved 粤ICP备15012680号-2
+					<a href="">Powered by vancheer</a>
+				</div>
+				<div class="links fl">
+					<a href="">法律声明</a> |
+					<a href="/privacy/privacy.html">隐私条款</a> |
+					<a href="/template/siteMap.aspx">网站地图</a> |
+					<a href="/contact/contact.html">联系我们</a>
+				</div>
+				<div class="share">
+					<em>分享到</em>
+					<a href="">
+						<img src="img/nimg19_1.png"/>
+					</a>
+					<a href="">
+						<img src="img/nimg19_2.png"/>
+					</a>
+					<a href="">
+						<img src="img/nimg19_3.png"/>
+					</a>
+					<a href="">
+						<img src="img/nimg19_4.png"/>
+					</a>					
+				</div>
+			</div>
+		</div>
+	</body>
+
+</html>

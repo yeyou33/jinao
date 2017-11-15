@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>广东蕉岭金奥长寿食品有限公司</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="css/base.css" />
+		<link rel="stylesheet" type="text/css" href="css/index.css" />
+        <link rel="stylesheet" type="text/css" href="css/animate.min.css"/>
+		<link rel="stylesheet" type="text/css" href="css/hover.css"/>
+		<script src="js/jquery-3.2.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="js/bootstrap.min.js" type="text/javascript" charset="utf-8"></script>
+		<script>
+			var GLOBLE = GLOBLE || {}; //定义一个全局变量，用来存值
+			window.onload = function() {
+
+				resizeBlocks();
+
+				window.onresize = function() {
+					resizeBlocks();
+					//调整页面大小的时候让整屏居中。
+					mainSlideGo();
+					if(mainSlideIndex) {
+						if(GLOBLE.resizeTimer) {
+							clearInterval(GLOBLE.resizeTimer);
+						}
+						GLOBLE.resizeTimer = setTimeout(function() {
+							mainSlideGoing = true;
+							mainSlideGo();
+						}, 200)
+					}
+				}
+
+				//鼠标点击时切换
+				var slider_R = document.getElementById("slider_R")
+				var aAtags = slider_R.getElementsByTagName("li");
+				for(var i = 0; i < aAtags.length; i++) {
+					aAtags[i].onclick = function() {
+						mainSlideIndex = this.getAttribute("index");
+						mainSlideGo();
+					}
+				}
+
+				/*单页滚动开始*/
+				//鼠标滚动实践绑定及检测
+				var mainSlideIndex = 0;
+				var mainSlideGoing = false;
+				var mainSlideDelay = 0;
+				var mainSlideTimer = null;
+				var scrollFunc = function(e) {
+					e = e || window.event;
+					if(e.wheelDelta) { //判断浏览器IE，谷歌滑轮事件            
+						if(e.wheelDelta > 0) { //当滑轮向上滚动时  
+							//alert("滑轮向上滚动"); 
+							mainSlideUp();
+						}
+						if(e.wheelDelta < 0) { //当滑轮向下滚动时  
+							//alert("滑轮向下滚动 ie chrom");
+							mainSlideDown();
+
+						}
+					} else if(e.detail) { //Firefox滑轮事件   
+						if(e.detail > 0) { //当滑轮向下滚动时  
+							//alert("滑轮向下滚动")
+							mainSlideDown();
+
+						}
+						if(e.detail < 0) { //当滑轮向上滚动时  
+							//alert("滑轮向上滚动ff");
+							mainSlideUp();
+						}
+					}
+				}
+				//给页面绑定滑轮滚动事件  
+				if(document.addEventListener) { //firefox  
+					document.addEventListener('DOMMouseScroll', scrollFunc, false);
+				}
+				//滚动滑轮触发scrollFunc方法  //ie 谷歌  
+				window.onmousewheel = document.onmousewheel = scrollFunc;
+				//向下滚动
+				function mainSlideDown() {
+					if(mainSlideDelay < 1) { //这个判断用于检测第一次鼠标滚动，让第二次鼠标滚动的时候，再执行页面动效
+						clearInterval(mainSlideTimer);
+						mainSlideTimer = setTimeout(function() {
+							mainSlideDelay++;
+						}, 100)
+
+					} else if(!mainSlideGoing) {
+						mainSlideGoing = true;
+						mainSlideIndex++;
+						if(mainSlideIndex > 4) {
+							mainSlideIndex = 4;
+						}
+						mainSlideGo();
+
+					}
+				}
+				//向上滚动
+				function mainSlideUp() {
+					if(mainSlideDelay < 1) {
+						clearInterval(mainSlideTimer);
+						mainSlideTimer = setTimeout(function() {
+							mainSlideDelay++;
+						}, 100)
+
+					} else if(!mainSlideGoing) {
+						mainSlideGoing = true;
+						mainSlideIndex--;
+						if(mainSlideIndex < 0) {
+							mainSlideIndex = 0;
+						}
+						mainSlideGo();
+					}
+				}
+
+				//滚动方法
+				function mainSlideGo() {
+
+					//用于设置滚动方向
+					var direction = 1;
+
+					var oDiv = document.getElementById("content");
+
+					var target = document.getElementById("wrap").offsetHeight * mainSlideIndex;
+
+					var distance = Math.abs(target + oDiv.offsetTop);
+					//判断滚动方法，并设置相应的滚动方向是+还是-
+					if(target + oDiv.offsetTop < 0) {
+						direction = -1;
+					}
+					//设置滚动速度
+					var spead = distance / 40;
+					var remainDis = distance;
+
+					//运动定时器
+					var goTimer = setInterval(function() {
+						oDiv.style.top = oDiv.offsetTop - spead * direction + "px";
+						remainDis -= spead;
+						if(remainDis <= 40) {
+							clearInterval(goTimer);
+							oDiv.style.top = -target + "px"
+							mainSlideGoing = false;
+							mainSlideDelay = 0;
+							document.getElementsByClassName("now")[0].className = "";
+							slider_R.getElementsByTagName("li")[mainSlideIndex].className = "now";
+						}
+					}, 8)
+
+				}
+
+				/*单页滚动结束*/
+
+				//调整页面高度的方法
+				function resizeBlocks() {
+					var screenh = document.documentElement.clientHeight || document.body.clientHeight;
+
+					aBlock = document.getElementsByClassName("colorBlock");
+
+					for(var i = 0; i < aBlock.length; i++) {
+
+						aBlock[i].style.height = screenh + "px";
+					}
+					document.getElementById("wrap").style.height = screenh + "px";
+
+				}
+				
+				var navT = document.getElementsByClassName("nav")[0]
+				var navLi = navT.getElementsByTagName("li")
+				var box = document.getElementsByClassName("sNav")
+				for(var i = 0; i < navLi.length; i++) {
+					navLi[i].index = i;
+					navLi[i].onmouseenter = function() {
+						for(var i = 0; i < navLi.length; i++) {
+							navLi[i].className = ""
+							box[i].style.display = "none"
+						}
+						box[this.index].style.display = "block";
+					}
+					navLi[i].onmouseout = function() {
+						for(var i = 0; i < navLi.length; i++) {
+							box[i].style.display = "none"
+						}
+					}
+				}				
+			var topSearch = document.getElementsByClassName("topSearch")[0]
+			var topSearchA = document.getElementsByClassName("topSearchA")[0]
+			    var timer = null;
+				topSearch.onmouseover = function(){
+					topSearchA.style.display = "block";
+				}
+				topSearchA.onmouseover = function(){
+					clearTimeout(timer)
+					topSearchA.style.display = "block";
+				}
+				topSearchA.onmouseout = function(){
+					topSearchA.style.display = "none";
+				}
+				topSearch.onmouseout = function(){
+					timer = setTimeout(function(){
+						topSearchA.style.display="none";
+					},500)
+				}
+				
+//				轮播1
+
+				var bannerBox = document.getElementsByClassName("bannerBox")[0]
+				var ul = bannerBox.getElementsByTagName("ul")[0];
+				var prev = document.getElementsByClassName("prev")[0];
+				var next = document.getElementsByClassName("next")[0];
+				var num = 0;
+				prev.onclick = function(){
+					num--;
+					if(num===-1){
+						ul.style.transition = "0s";
+						ul.style.left = "-6830px";
+						num = 4;
+						setTimeout(function(){
+							ul.style.transition = "1s";
+							ul.style.left = "-5464px";
+						},10)
+					}else{
+						ul.style.left = num*-1366 + 'px';
+					}
+				}
+				next.onclick = function(){
+					num++;
+					if(num===6){
+						ul.style.transition = "0s";
+						ul.style.left = "0px";
+						num = 1;
+						setTimeout(function(){
+							ul.style.transition = "1s";
+							ul.style.left = num*-1366 + 'px';
+						},10)
+					}else{
+						ul.style.left = num*-1366 + 'px';
+					}
+				}	
+				
+//				轮播2
+                var main = document.getElementsByClassName("banner2")[0]
+//				var main = document.getElementsByTagName("div")[0]
+				var oUl = main.getElementsByTagName("ul")[0];
+				var oLis = oUl.getElementsByTagName("li")
+				var btnL = document.getElementsByClassName("p")[0]
+				var btnR = document.getElementsByClassName("n")[0]
+				var timer = null;
+				var speed = 0;
+				oUl.innerHTML = oUl.innerHTML + oUl.innerHTML;
+				oUl.style.width = oLis[0].offsetWidth*oUl.children.length+"px";				
+				timer = setInterval(function(){
+					moveImg(-1200,0)
+				},20)
+				main.onmouseover = function(){
+					clearInterval(timer);		
+				}
+				main.onmouseout = function(){
+					timer = setInterval(function(){
+						moveImg(-1200,0)
+					},20)		
+				}
+				btnL.onclick = function(){
+					clearInterval(timer)
+					timer = setInterval(function(){
+						moveImg(-1200,0)
+					},20)
+				}
+				btnR.onclick = function(){
+					clearInterval(timer)
+					timer = setInterval(function(){
+						moveImg(0,-1200)
+					},20)	
+				}
+				//封装函数
+				function moveImg(iTarget,value){
+					if(iTarget>value){
+						speed = 1
+					}else{
+						speed = -70
+					}
+					if(oUl.offsetLeft===iTarget){
+						oUl.style.left = value;
+					}else{
+						oUl.style.left = oUl.offsetLeft + speed + "px"
+					}
+				}				
+			}
+			
+			//	table切换			
+			$(function() {
+				$('[data-toggle="tooltip"]').tooltip()
+//				$(".Top").addClass("animated rotateIn")
+                $('.Top').mouseenter(function(){
+                	$(this).addClass('animated fadeInLeft')
+                	setTimeout(function(){
+                	$(this).removeClass('fadeInLeft')
+                		
+                	},1000);
+                })
+
+			})
+
+
+		</script>
+	</head>
+
+	<body>
+		<div id="wrap">
+			<div id="content">
+				<!--第一屏-->
+				<div class="colorBlock">
+					<div class="headDiv">
+						<div class="wal">
+							<a href=""><img src="img/logo.jpg" /></a>
+							<nav class="nav">
+								<ul>
+									<li>
+										<a href="index.html">首页</a>
+									</li>
+									<li>
+										<a href="news.html">关于金奥</a>
+									</li>
+									<li>
+										<a href="protce.html">新闻资讯</a>
+									</li>
+									<li>
+										<a href="knowledge.html">健康知识</a>
+									</li>
+									<li>
+										<a href="product.html">产品介绍</a>
+									</li>
+									<li>
+										<a href="join.html">招商加盟</a>
+									</li>
+									<li>
+										<a href="contact.html">联系我们</a>
+									</li>
+								</ul>
+							</nav>
+							<div class="topSearch">
+								<img src="img/searchA.png" />
+							</div>
+							<div class="topRight">
+								<a href="">登录</a>
+								<a href="">注册</a>
+							</div>
+						</div>
+					</div>
+					<div class="sNav">
+						<div class="wal">
+							<div class="list">
+								<ul>
+									<li>
+										<a href="">公司介绍</a>
+									</li>
+									<li>
+										<a href="">产地介绍</a>
+									</li>
+									<li>
+										<a href="">品牌文化</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="sNav">
+						<div class="wal">
+							<div class="list" style="left: 261px;">
+								<ul>
+									<li>
+										<a href="">公司介绍</a>
+									</li>
+									<li>
+										<a href="">产地介绍</a>
+									</li>
+									<li>
+										<a href="">品牌文化</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="sNav">
+						<div class="wal">
+							<div class="list" style="left: 371px;">
+								<ul>
+									<li>
+										<a href="">公司介绍</a>
+									</li>
+									<li>
+										<a href="">产地介绍</a>
+									</li>
+									<li>
+										<a href="">品牌文化</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="sNav">
+						<div class="wal">
+							<div class="list" style="left: 400px;">
+								<ul>
+									<li>
+										<a href="">公司介绍</a>
+									</li>
+									<li>
+										<a href="">产地介绍</a>
+									</li>
+									<li>
+										<a href="">品牌文化</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="sNav">
+						<div class="wal">
+							<div class="list" style="left: 500px;">
+								<ul>
+									<li>
+										<a href="">公司介绍</a>
+									</li>
+									<li>
+										<a href="">产地介绍</a>
+									</li>
+									<li>
+										<a href="">品牌文化</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="sNav">
+						<div class="wal">
+							<div class="list" style="left: 587px;">
+								<ul>
+									<li>
+										<a href="">公司介绍</a>
+									</li>
+									<li>
+										<a href="">产地介绍</a>
+									</li>
+									<li>
+										<a href="">品牌文化</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="sNav">
+						<div class="wal">
+							<div class="list" style="left: 696px;">
+								<ul>
+									<li>
+										<a href="">公司介绍</a>
+									</li>
+									<li>
+										<a href="">产地介绍</a>
+									</li>
+									<li>
+										<a href="">品牌文化</a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+					<div class="topSearchA">
+						<div class="box">
+							<div class="form">
+								<input type="text" class="input1" placeholder="搜索关键字" id="keyss" name="keyss" onfocus="if (value ==''){value =''}" onblur="if (value =='搜索关键字'){value='搜索关键字'}" onkeypress="EnterPress1(event)" onkeydown="EnterPress1(event)">
+								<input type="button" class="btn1" id="txtheadkey" onclick="javascript: checksearchs();">
+							</div>
+						</div>
+					</div>					
+					<div class="bgBanner1">
+						<div class="banner">
+							<div class="bannerBox">
+								<ul>
+									<li><img src="img/nav2.jpg" alt="" /></li>
+									<li><img src="img/nav3.jpg" alt="" /></li>
+									<li><img src="img/nav1.jpg" alt="" /></li>
+									<li><img src="img/nav5.jpg" alt="" /></li>
+									<li><img src="img/nav6.jpg" alt="" /></li>
+									<li><img src="img/nav2.jpg" alt="" /></li>
+									
+								</ul>
+							</div>
+							<a class="prev" href="javascript:;">&lt;</a>
+                            <a class="next" href="javascript:;">&gt;</a>
+						</div>
+					</div>
+				</div>
+				<!--第二屏-->
+				<div class="colorBlock">
+					<div class="bgBanner2">
+						<div class="indexPart2L">
+							<div class="bg">
+								<img src="img/main1.jpg" />
+							</div>
+						</div>
+						<div class="indexPart2R">
+							<div class="title">
+								<em>关于金奥</em> ABOUT
+							</div>
+							<div class="titleCont">
+								<p>广东蕉岭金奥长寿食品有限公司成立于2015年3月，注册资金2000万元。 公司所属“广东金奥长寿产业园” 位于世界长寿乡——蕉岭文福镇乌土村，占地面积40余亩，总投资两亿元人民币。园区一期规划并投入使用的功能区域有： 长寿山泉水生产仓储区、粮食加工仓储区、系列农土特产生产包装区与办公生活功能区。
+								</p>
+								<p>公司依托蕉岭长寿乡的优质自然资源，开发健康养生富硒粮、油、水、客家娘酒及当地农 土特产系列产品，打造并开拓高端的世界长寿乡蕉岭的食品品牌。
+								</p>
+								<p>目前公司拥有三个签约种植基地，总种植面积1100亩，未来计划使用耕地面积3000亩。种植模式采用企业监管， 基地与种粮大户联合种植的模式进行生产，产品统一加工制造及物流配送，营销中心设在广州
+								</p>
+								<p> 产业园完全开发后，公司年产值预计超过叁亿元人民币，对蕉岭长寿食品产业链的整体提升将起到主导作用。</p>
+							</div>
+							<div class="indexPart2R_B">
+								<ul>
+									<li>
+										<a href="#"><img src="img/yezi3.png" alt="" /></a>
+									</li>
+									<li>
+										<a href="#"><img src="img/cloud3.png" alt="" /></a>
+									</li>
+									<li>
+										<a href="#"><img src="img/shuidi3.png" alt="" /></a>
+									</li>
+									<li>
+										<a href="#"><img src="img/maizi3.png" alt="" /></a>
+									</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!--第三屏-->
+				<div class="colorBlock Numtwo">
+					<div class="title2">
+						<em>新闻资讯</em> NEWS
+					</div>
+					<div class="big">
+						<ul class="row">
+							<li class="col-lg-6 numTwoL">
+								<div>
+									<div><img src="img/rou.jpg" /></div>
+									<h5>富硒好柚，原生态的馈赠</h5>
+									<p>2017年09月07日</p>
+									<p>世界长寿之乡蕉岭，土壤富含硒等微量元素，地处亚热带气候地区，光照充足，雨量充沛，年均气候21.2°C，适合柚子的生长。柚子个大果甜，自然生长，原生态种植，绿色健康！是送礼的</p>
+									<button>MORE</button>
+								</div>
+								<div>
+									<ol>
+										<li class="Top">
+											<p>富硒好柚，原生态的馈赠</p>
+											<p>2017年09月07日</p>
+										</li>
+										<li class="Top">
+											<p>探访世界长寿之乡-蕉岭</p>
+											<p>2017年04月26日</p>
+										</li>
+										<li class="Top">
+											<p>蕉岭森林中野生山珍~~~红菇</p>
+											<p>2017年04月26日</p>
+										</li>
+										<li class="Top">
+											<p>花粉之王--茶花粉的营养价值</p>
+											<p>2017年04月11日</p>
+										</li>
+										<li class="Top">
+											<p>南磜寿星长寿秘方</p>
+											<p>2017年04月10日</p>
+										</li>
+										<li class="Top">
+											<p>有一种牵挂叫「客家老屋」记...</p>
+											<p>2017年04月07日</p>
+										</li>
+										<li class="Top">
+											<p>夫妻牵手70载共渡白金婚</p>
+											<p>2017年03月23日</p>
+										</li>
+										<li class="Top">
+											<p>蕉岭长寿食品插上“富硒”翅...</p>
+											<p>2017年03月23日</p>
+										</li>
+									</ol>
+								</div>
+							</li>
+							<li class="col-lg-6 numTwoR">
+								<div>
+									<div><img src="img/slib2.jpg" /></div>
+									<h5>健康知识</h5>
+									<p>蕉岭为世界第七个"世界长寿乡"，截止2013年底，80岁以上老人有10819人，占县总人口4.7%，其中百岁老人有45名。根据广东省地质局勘探梅州富硒土壤资源结果显示，蕉岭硒平均含量达0.7mg/公斤土，比国家富硒标准高出75%...</p>
+									<button>MORE</button>
+								</div>
+							</li>
+						</ul>
+					</div>
+				</div>
+				<!--第四屏-->
+				<div class="colorBlock">
+					<div class="box1">
+						<div class="title2">
+							<em>产品介绍</em> PRODUCT
+						</div>
+						<ul class="nav nav-tabs" role="tablist">
+							<li role="presentation" class="active">
+								<a href="#home" aria-controls="home" role="tab" data-toggle="tab">精选推荐</a>
+							</li>
+							<li role="presentation">
+								<a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">山泉水</a>
+							</li>
+							<li role="presentation">
+								<a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">优质大米</a>
+							</li>
+							<li role="presentation">
+								<a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">蕉岭特产</a>
+							</li>
+						</ul>
+					</div>
+					<div>
+						<div class="tab-content">
+							<div role="tabpanel" class="tab-pane active" id="home">
+								<div class="banner2">
+									<ul>
+										<li><img src="img/youzi.jpg" /></li>
+										<li><img src="img/youzi2.jpg" /></li>
+										<li><img src="img/bottom1.jpg" /></li>
+										<li><img src="img/bottom2.jpg" /></li>
+										<li><img src="img/bottom3.jpg" /></li>
+										<li><img src="img/bottom4.jpg" /></li>
+										<li><img src="img/youzi.jpg" /></li>
+									</ul>
+								</div>
+								<a class="p" href="javascript:;">&lt;</a>
+								<a class="n" href="javascript:;">&gt;</a>
+							</div>
+							<div role="tabpanel" class="tab-pane" id="profile">
+								<div class="banner2">
+									<ul>
+										<li><img src="img/shui.jpg" /></li>
+										<li><img src="img/shui2.jpg" /></li>
+										<li><img src="img/shui3.jpg" /></li>
+										<li><img src="img/shui5.jpg" /></li>
+									</ul>
+								</div>
+							</div>
+							<div role="tabpanel" class="tab-pane" id="messages">
+								<div class="banner2">
+									<ul>
+
+										<li><img src="img/bottom1.jpg" /></li>
+										<li><img src="img/bottom4.jpg" /></li>
+										<li><img src="img/bottom6.jpg" /></li>
+										<li><img src="img/bottom4.jpg" /></li>
+									</ul>
+								</div>
+							</div>
+							<div role="tabpanel" class="tab-pane" id="settings">
+								<div class="banner2">
+									<ul>
+										<li><img src="img/youzi.jpg" /></li>
+										<li><img src="img/youzi2.jpg" /></li>
+										<li><img src="img/bottom3.jpg" /></li>
+										<li><img src="img/bottom4.jpg" /></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+				<!--第五屏-->
+				<div class="colorBlock five">
+					<div class="bottom">
+						<h5>广东蕉岭金奥长寿食品有限公司</h5>
+						<ol>
+							<li>
+								<img src="img/nimg50_5.png" />
+								<p>020-84776006</p>
+								<p>0753-7582888</p>
+							</li>
+							<li>
+								<img src="img/nimg50_6.png" />
+								<p>JINAOLINGJINAO@126.COM</p>
+							</li>
+							<li>
+								<img src="img/nimg50_7.png" />
+								<p>广州市番禺区钟村街汉兴二路16号（ 奥园城市天地5栋A区8号铺-蕉岭长寿特产馆)</p>
+							</li>
+						</ol>
+					</div>
+<!--					<a href="#">返回顶部</a>-->
+					<div class="foot foot2">
+						<div class="wal">
+							<div class="msg fl">
+								Copyright © jinao.com All Rights Reserved 粤ICP备15012680号-2
+								<a href="">Powered by vancheer</a>
+							</div>
+							<div class="links fl">
+								<a href="">法律声明</a> |
+								<a href="/privacy/privacy.html">隐私条款</a> |
+								<a href="/template/siteMap.aspx">网站地图</a> |
+								<a href="/contact/contact.html">联系我们</a>
+							</div>
+							<div class="share">
+								<em>分享到</em>
+								<a href="">
+									<img src="img/nimg19_1.png" />
+								</a>
+								<a href="">
+									<img src="img/nimg19_2.png" />
+								</a>
+								<a href="">
+									<img src="img/nimg19_3.png" />
+								</a>
+								<a href="">
+									<img src="img/nimg19_4.png" />
+								</a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<ul id="slider_R">
+			<li index="0" class="now"></li>
+			<li index="1"></li>
+			<li index="2"></li>
+			<li index="3"></li>
+			<li index="4"></li>
+		</ul>
+	</body>
+
+</html>

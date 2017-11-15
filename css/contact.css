@@ -1,0 +1,41 @@
+.banner{
+	width: 100%;
+	height: 350px;
+	background: url(../img/show5.jpg) no-repeat 0px 80px;
+	background-size: contain;
+}
+.wal2 #content{
+	width: 1100px;
+	height: 300px;
+	margin-left: 100px;
+}
+.wal2 #content p{
+	width: 460px;
+	height: 60px;
+	line-height: 60px;
+	margin-top: 25px;
+	float: left;
+	color: #333;
+	padding-left: 80px;
+	/*background: url(../img/nimg50_10.png) no-repeat left 7px;*/
+}
+.wal2 #content p:nth-of-type(1){
+	background: url(../img/nimg50_8.png) no-repeat left top;	
+}
+.wal2 #content p:nth-of-type(2){
+	background: url(../img/nimg50_9.png) no-repeat left top;	
+}
+.wal2 #content p:nth-of-type(3){
+	background: url(../img/nimg50_10.png) no-repeat left top;	
+}
+.wal2 #content p:nth-of-type(4){
+	background: url(../img/nimg50_11.png) no-repeat left top;	
+}
+.wal2 #content p:nth-of-type(5){
+	width: 650px;
+	background: url(../img/nimg50_12.png) no-repeat left top;
+	
+}
+#dituContent{
+	margin: 50px auto;
+}

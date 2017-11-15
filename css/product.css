@@ -1,0 +1,6 @@
+.banner{
+	width: 100%;
+	height: 350px;
+	background: url(../img/show3.jpg) no-repeat 0px 80px;
+	background-size: contain;
+}

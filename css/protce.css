@@ -1,0 +1,356 @@
+*{
+	padding: 0;
+	margin: 0;
+	list-style: none;
+}
+.banner{
+	width: 100%;
+	height: 350px;
+	background: url(../img/nav.jpg) no-repeat 0px 80px;
+	background-size: contain;
+}
+.pageTop{
+	height: 40px;
+	line-height: 40px;
+	background: #f1f1f1;
+}
+.wal2{
+	position: relative;
+	width: 100%;
+	margin: 0 auto;
+}
+.pageNow{
+	position: absolute;
+	right: 0;
+	top: 0;
+	font-size: 14px;
+	color: #a4a4a4;
+	background: url(../img/nimg16_1.png) left center no-repeat;
+	padding-left: 30px;
+	margin-right: 100px;
+}
+.pageTop a{
+	color: #A4A4A4;
+	outline: none;
+}
+.pageTop em{
+	color: #1CBA6E;
+	font-style: normal;
+}
+.pageBox{
+	padding: 40px 0;
+}
+.pageTitle{
+	text-align: center;
+}
+.pageTitle p {
+	font-size: 36px;
+	color: #333;
+	background: url(../img/line2.jpg) center bottom no-repeat;
+	padding-bottom: 15px;
+}
+.pageTitle em{
+	display: block;
+	color: #979797;
+	font-size: 16px;
+	padding: 15px 0;
+	font-style: normal;
+	text-transform: uppercase;
+}
+.news{
+	padding: 35px 0;
+}
+.news .list li{
+	height: 245px;
+	background: url(../img/line3.png) bottom repeat-x;
+	padding-left: 450px;
+	position: relative;
+}
+.news .list li .imgDiv{
+	position: absolute;
+	left: 0px;
+	top: 30px;
+}
+img{
+	border: 0;
+	vertical-align: middle;	
+}
+.news .list li .timeDiv{
+	position: absolute;
+	left: 314px;
+	top: 25px;
+	width: 103px;
+	height: 145px;
+	background: url(../img/line4.png) right top no-repeat;
+}
+.news .list li .timeDiv h4{
+	font-size: 28px;
+	color: #bea733;
+}
+.news .list li .timeDiv p{
+	font-size: 14px;
+	padding-top: 15px;
+}
+.news .list li .name{
+	padding-top: 4px;
+	font-size: 18px;
+	font-weight: bold;
+	height: 24px;
+	overflow: hidden;
+	margin-bottom: 15px;
+}
+.news .list li .name a{
+	color: #222;
+}
+.news .list li .content{
+	font-size: 14px;
+	line-height: 30px;
+	height: 56px;
+	overflow: hidden;
+}
+.news .list li .btnDiv{
+	padding-top: 25px;
+}
+.news .list li .btnDiv a{
+	display: block;
+	width: 79px;
+	height: 24px;
+	line-height: 24px;
+	text-align: center;
+	background: #c4c5c5;
+	font-size: 14px;
+	border-radius: 20px;
+	color: #fff;
+}
+.pageNum{
+	height: 100px;
+	padding-top: 30px;
+	text-align: center;
+	color: #444;
+}
+.pageNum a{
+	margin: 0 3px;
+	display: inline-block;
+	height: 25px;
+	line-height: 25px;
+	background: #fff;
+	padding: 0 9px;
+	border: #d9d9d9 solid 1px;
+	font-size: 14px;	
+}
+.pageNum .prev em{
+	background: url(../img/prev.png) left center no-repeat;
+	padding-left: 10px;
+}
+.pageNum a:hover, .pageNum .aNow{
+	background: #1CBA6E;
+	border: #1CBA6E solid 1px;
+	color: #fff;
+}
+.pageNum .next em{
+	background: url(../img/next.png) right center no-repeat;
+	padding-right: 10px;
+}
+em{
+	font-style: normal;
+}
+.footDiv{
+	background: #2b2b2b;
+}
+.footDiv2{
+	min-height: 360px;
+}
+@media screen and (max-width:1366px )
+.footDiv .wal {
+	padding-top: 18px;
+}
+.footDiv2 .wal{
+	padding-top: 18px;
+	min-height: 310px;
+}
+.footDiv .wal{
+	position: relative;
+}
+@media screen and (max-width: 1366px ) 
+.wal {
+	width: 1200px;
+}
+.wal{
+	margin: 0 auto;
+}
+.footNav {
+	padding-bottom: 20px;	
+}
+.fl{
+	float: left;
+	font-size: 12px;
+	/*margin-left: 10px;*/	
+}
+@media screen and (max-width:1366px )
+.footNav li {
+	width: 114px;
+	margin-right: 40px;
+}
+.footNav li{
+	float: left;
+	width: 114px;
+	margin-right: 40px;
+}
+.footNav li h2{
+	padding-bottom: 10px;
+}
+.footNav li dl{
+	color: #999;
+}
+.footNav li h2{
+	font-size: 16px;
+	height: 34px;
+	background: url(../img/nimg121Bg.png) left bottom no-repeat;
+	color: #fff;
+	font-weight: 400;
+	display: block;
+}
+.footNav li dd{
+	font-size: 14px;
+	height: 28px;
+	line-height: 28px;
+	position: relative;
+}
+.footNav li dd a{
+	color: #ababab;
+}
+.clear_f{
+	clear: both;
+	height: 0px;
+	padding: 0;
+	margin: 0;
+	display: block;
+}
+.fr{
+	float: right;
+	/*margin-right: 30px;*/
+}
+@media screen and (max-width: 1440px )
+.footDiv_r li{
+	margin-left: 25px;
+	width: 64px;
+}
+.footDiv_r li{
+	margin-left: 25px;
+	width: 64px;	
+	font-size: 14px;
+	float: left;
+	text-align: center;
+}
+.footDiv_r li a{
+	color: #ababab;
+}
+@media screen and (max-width:1440px )
+.footDiv_r li img {
+	width: 64px;
+}
+.footDiv_r li img{
+	border: 0px;
+	width: 64px;
+	vertical-align: middle;
+}
+.footDiv_r li p{
+	padding-top: 15px;
+}
+.h10{
+	height: 10px;
+	overflow: hidden;
+	clear: both;
+}
+.footDiv2 .links{
+	position: absolute;
+	left: 0;
+	bottom: 20px;
+	
+}
+.footDiv .links{
+	padding-top: 15px;
+	color: #ababab;
+	font-size: 14px;
+}
+.footDiv .links a{
+	padding: 0 10px;
+	color: #ababab;
+}
+.foot {
+    height: 40px;
+    background: #212121;
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    width: 100%;
+    font-size: 12px;
+}
+.foot2{
+	position: relative;
+}
+.foot .wal{
+	position: relative;
+	height: 40px;
+}
+.wal{
+	width: 1200px;
+	margin: 0 auto;
+}
+.foot .msg{
+	line-height: 40px;
+	color: #656565;
+	padding-right: 100px;
+}
+.foot .msg a{
+	color: #666;
+}
+.foot .links{
+	line-height: 40px;
+}
+.foot .links a{
+	padding: 0 12px;
+}
+.links a{
+	color: #666;
+}
+.foot .share{
+	position: absolute;
+	right: 0;
+	top: 0;
+	line-height: 40px;
+}
+.foot .share em{
+	color: #666666;
+	float: left;
+}
+.foot .share a{
+	/*line-height: 40px;*/
+	margin-top: 10px;
+	display: block;
+	float: left;	
+	padding-left: 8px;
+	color: #666;
+}
+/*.ding{
+	position: absolute;
+	right: 40px;
+	bottom: 10px;
+	border-radius: 20px;
+	text-align: center;
+	line-height: 40px;
+	display: block;
+	width: 60px;
+	height: 40px;
+	color: #fff;
+	background: rgba(0,0,0,0.2);
+}*/
+.topA {
+    background: url(../img/topA.png) left top no-repeat;
+    width: 48px;
+    height: 48px;
+	position: absolute;
+	right: 60px;
+	bottom: 10px;
+	display: block;	
+    }

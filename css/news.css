@@ -1,0 +1,21 @@
+.banner{
+	width: 100%;
+	height: 350px;
+	background: url(../img/shou.jpg) no-repeat 0px 80px;
+	background-size: contain;
+}
+.news{
+	padding: 50px 80px;
+}
+.news p{
+	font-size: 14px;
+	line-height: 26px;
+	text-indent: 21.0pt;
+}
+.news .imgDiv{
+	padding: 25px 0;
+}
+img{
+	border: 0;
+	vertical-align: middle;	
+}
